@@ -2,119 +2,119 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://csq-an94.github.io/categories/</loc>
     <lastmod>2025-08-11T18:20:12+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/categories/"
+                href="https://csq-an94.github.io/zh-cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/"
+                href="https://csq-an94.github.io/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/categories/journal/</loc>
+    <loc>https://csq-an94.github.io/categories/journal/</loc>
     <lastmod>2025-08-11T18:20:12+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/p/myfirstblog/</loc>
+    <loc>https://csq-an94.github.io/p/myfirstblog/</loc>
     <lastmod>2025-08-11T18:20:12+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>https://csq-an94.github.io/post/</loc>
     <lastmod>2025-08-11T18:20:12+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://csq-an94.github.io/about/</loc>
     <lastmod>2025-08-11T18:28:53+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/about/"
+                href="https://csq-an94.github.io/zh-cn/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/about/"
+                href="https://csq-an94.github.io/about/"
                 />
   </url><url>
-    <loc>http://localhost:1313/page/</loc>
+    <loc>https://csq-an94.github.io/page/</loc>
     <lastmod>2025-08-11T18:28:53+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/page/"
+                href="https://csq-an94.github.io/zh-cn/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/page/"
+                href="https://csq-an94.github.io/page/"
                 />
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://csq-an94.github.io/archives/</loc>
     <lastmod>2025-08-11T11:33:58+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/archives/"
+                href="https://csq-an94.github.io/zh-cn/archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/archives/"
+                href="https://csq-an94.github.io/archives/"
                 />
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://csq-an94.github.io/</loc>
     <lastmod>2025-08-11T11:33:58+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/"
+                href="https://csq-an94.github.io/zh-cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/"
+                href="https://csq-an94.github.io/"
                 />
   </url><url>
-    <loc>http://localhost:1313/library/</loc>
+    <loc>https://csq-an94.github.io/library/</loc>
     <lastmod>2025-08-11T18:20:12+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/links/</loc>
+    <loc>https://csq-an94.github.io/links/</loc>
     <lastmod>2025-08-11T11:33:58+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/links/"
+                href="https://csq-an94.github.io/zh-cn/links/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/links/"
+                href="https://csq-an94.github.io/links/"
                 />
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://csq-an94.github.io/search/</loc>
     <lastmod>2025-08-11T11:33:58+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/search/"
+                href="https://csq-an94.github.io/zh-cn/search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/search/"
+                href="https://csq-an94.github.io/search/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://csq-an94.github.io/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="http://localhost:1313/zh-cn/tags/"
+                href="https://csq-an94.github.io/zh-cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/"
+                href="https://csq-an94.github.io/tags/"
                 />
   </url>
 </urlset>

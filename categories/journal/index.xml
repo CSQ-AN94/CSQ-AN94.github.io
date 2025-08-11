@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Journal on CSQ-AN94</title>
-        <link>http://localhost:1313/categories/journal/</link>
+        <link>https://csq-an94.github.io/categories/journal/</link>
         <description>Recent content in Journal on CSQ-AN94</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>CSQ-AN94</copyright>
-        <lastBuildDate>Mon, 11 Aug 2025 18:20:12 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/journal/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 11 Aug 2025 18:20:12 +0800</lastBuildDate><atom:link href="https://csq-an94.github.io/categories/journal/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>MyFirstBlog</title>
-        <link>http://localhost:1313/p/myfirstblog/</link>
+        <link>https://csq-an94.github.io/p/myfirstblog/</link>
         <pubDate>Mon, 11 Aug 2025 18:13:54 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/myfirstblog/</guid>
+        <guid>https://csq-an94.github.io/p/myfirstblog/</guid>
         <description>&lt;p&gt;开始尝试第一篇blog，希望一切顺利。还没太搞懂这个博客的设置，现在完全是毛坯房，下面可能会尝试上传我的笔记试试看。&lt;/p&gt;
 </description>
         </item>
