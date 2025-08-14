@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>CSQ-AN94</copyright>
-        <lastBuildDate>Thu, 14 Aug 2025 11:29:12 +0800</lastBuildDate><atom:link href="https://csq-an94.github.io/tags/c-programming-notes/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Aug 2025 11:34:30 +0800</lastBuildDate><atom:link href="https://csq-an94.github.io/tags/c-programming-notes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Writing_Running_and_Fixing_Code_in_C</title>
         <link>https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/</link>
         <pubDate>Thu, 14 Aug 2025 11:26:01 +0800</pubDate>
@@ -72,9 +72,18 @@ Translates assembly instructions(汇编指令) into machine code&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;picture of the hole process&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://csq-an94.github.io/ox-hugo/compilation_process.png&#34; width=&#34;1500px&#34;&gt;
-    &lt;/figure&gt;
-
+&lt;p&gt;&lt;img src=&#34;https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/img/compilation_process.png&#34;
+	width=&#34;596&#34;
+	height=&#34;155&#34;
+	srcset=&#34;https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/img/compilation_process_hu_eec1c85f897cfa28.png 480w, https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/img/compilation_process_hu_56f331930e0a5c8d.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;384&#34;
+		data-flex-basis=&#34;922px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;tools&#34;&gt;tools
@@ -93,17 +102,84 @@ Translates assembly instructions(汇编指令) into machine code&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;options&lt;/p&gt;
-&lt;p&gt;-o&amp;lt;filename&amp;gt;                  Specify output file name                             指定文件名
--Wall                         Enable warning messages                              输出警告信息
--fexec-charset=&amp;lt;charset&amp;gt;      Set execution character set                          指定运行时编码      -fexec-charset=GBK
--finput-charset=&amp;lsquo;UTF-8&amp;rsquo;       Set source file input character set                  指定源文件编码      -finput-charset=UTF-8
--O(0-3)                       Set optimization level (0 to 3)                      指定代码优化级别
--E  -o&amp;lt;filename.i&amp;gt;            Run preprocessing only and write output to file      编译过程进行到预处理
--S                            Compile to assembly only                             编译过程进行到编译
--c                            Compile to object code only (no linking)             编译过程执行到汇编
--static                       Link statically                                      静态链接
--I&amp;lt;dir&amp;gt;                       Add directory to header search path                  指定头文件搜索路径
--L&amp;lt;dir&amp;gt;                       Add directory to library search path                 指定库搜索路径&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Option&lt;/th&gt;
+          &lt;th&gt;English Description&lt;/th&gt;
+          &lt;th&gt;中文说明&lt;/th&gt;
+          &lt;th&gt;Example&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-o &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Specify output file name&lt;/td&gt;
+          &lt;td&gt;指定输出文件名&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -o app main.c&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-Wall&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Enable warning messages&lt;/td&gt;
+          &lt;td&gt;开启常见警告&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -Wall main.c -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-fexec-charset=&amp;lt;charset&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Set execution character set&lt;/td&gt;
+          &lt;td&gt;指定运行时编码&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -fexec-charset=GBK main.c -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-finput-charset=&amp;lt;charset&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Set source file input character set&lt;/td&gt;
+          &lt;td&gt;指定源文件编码&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -finput-charset=UTF-8 main.c -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-O0 … -O3&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Set optimization level (0 to 3)&lt;/td&gt;
+          &lt;td&gt;指定优化级别（0~3）&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -O2 main.c -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-E&lt;/code&gt; + &lt;code&gt;-o &amp;lt;file.i&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Run preprocessing only; write output to file&lt;/td&gt;
+          &lt;td&gt;仅预处理，配合 &lt;code&gt;-o&lt;/code&gt; 写入 &lt;code&gt;.i&lt;/code&gt; 文件&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -E -o out.i main.c&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-S&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Compile to assembly only&lt;/td&gt;
+          &lt;td&gt;仅编译到汇编（生成 &lt;code&gt;.s&lt;/code&gt;，不汇编不链接）&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -S -o out.s main.c&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-c&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Compile to object code only (no linking)&lt;/td&gt;
+          &lt;td&gt;仅生成目标文件 &lt;code&gt;.o&lt;/code&gt;（不链接）&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -c -o main.o main.c&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-static&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Link statically&lt;/td&gt;
+          &lt;td&gt;静态链接&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -static main.c -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-I&amp;lt;dir&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Add directory to header search path&lt;/td&gt;
+          &lt;td&gt;增加头文件搜索路径&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -Iinclude src/main.c -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;-L&amp;lt;dir&amp;gt;&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;Add directory to library search path&lt;/td&gt;
+          &lt;td&gt;增加库搜索路径&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;gcc -Llib main.c -lm -o app&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
  &lt;!--list-separator--&gt;
 &lt;ul&gt;
 &lt;li&gt;

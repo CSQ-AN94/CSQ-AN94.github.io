@@ -10,7 +10,7 @@
 <meta property='og:description' content=":ID: 369b629d-2991-4961-9234-83a00b87ecc5\nRUNNING compiling process preprocessing 预处理\nmain.c → main.i\ndeal with #include deal with conditional directives\u00a01(e.g. #if) delete #define,expand all the macos delete all comments add line and dile markers, so debug symbols and error/warning messages report correct locations keep all #pragma directives compilation 编译\nmain.c → main.s\nLexical analysis 词法分析 Syntax analysis 语法分析 Semantic analysis 语义分析 Optimization 优化 assembly 汇编\n">
 <meta property='og:url' content='https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/'>
 <meta property='og:site_name' content='CSQ-AN94'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T11:26:01&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T11:29:12&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T11:26:01&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T11:34:30&#43;08:00'/>
 <meta name="twitter:title" content="Writing_Running_and_Fixing_Code_in_C">
 <meta name="twitter:description" content=":ID: 369b629d-2991-4961-9234-83a00b87ecc5\nRUNNING compiling process preprocessing 预处理\nmain.c → main.i\ndeal with #include deal with conditional directives\u00a01(e.g. #if) delete #define,expand all the macos delete all comments add line and dile markers, so debug symbols and error/warning messages report correct locations keep all #pragma directives compilation 编译\nmain.c → main.s\nLexical analysis 词法分析 Syntax analysis 语法分析 Semantic analysis 语义分析 Optimization 优化 assembly 汇编\n">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -351,7 +351,7 @@
 
 
                 <time>
-                    2025-08-14 11:29 &#43;0800
+                    2025-08-14 11:34 &#43;0800
                 </time>
             </div>
     </footer>
@@ -424,9 +424,18 @@ Translates assembly instructions(汇编指令) into machine code</p>
 <ul>
 <li>
 <p>picture of the hole process</p>
-<figure><img src="/ox-hugo/compilation_process.png" width="1500px">
-    </figure>
-
+<p><img src="/p/writing_running_and_fixing_code_in_c/img/compilation_process.png"
+	width="596"
+	height="155"
+	srcset="/p/writing_running_and_fixing_code_in_c/img/compilation_process_hu_eec1c85f897cfa28.png 480w, /p/writing_running_and_fixing_code_in_c/img/compilation_process_hu_56f331930e0a5c8d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="384"
+		data-flex-basis="922px"
+	
+></p>
 </li>
 </ul>
 <h4 id="tools">tools
@@ -445,17 +454,84 @@ Translates assembly instructions(汇编指令) into machine code</p>
 <ul>
 <li>
 <p>options</p>
-<p>-o&lt;filename&gt;                  Specify output file name                             指定文件名
--Wall                         Enable warning messages                              输出警告信息
--fexec-charset=&lt;charset&gt;      Set execution character set                          指定运行时编码      -fexec-charset=GBK
--finput-charset=&lsquo;UTF-8&rsquo;       Set source file input character set                  指定源文件编码      -finput-charset=UTF-8
--O(0-3)                       Set optimization level (0 to 3)                      指定代码优化级别
--E  -o&lt;filename.i&gt;            Run preprocessing only and write output to file      编译过程进行到预处理
--S                            Compile to assembly only                             编译过程进行到编译
--c                            Compile to object code only (no linking)             编译过程执行到汇编
--static                       Link statically                                      静态链接
--I&lt;dir&gt;                       Add directory to header search path                  指定头文件搜索路径
--L&lt;dir&gt;                       Add directory to library search path                 指定库搜索路径</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>English Description</th>
+          <th>中文说明</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>-o &lt;file&gt;</code></td>
+          <td>Specify output file name</td>
+          <td>指定输出文件名</td>
+          <td><code>gcc -o app main.c</code></td>
+      </tr>
+      <tr>
+          <td><code>-Wall</code></td>
+          <td>Enable warning messages</td>
+          <td>开启常见警告</td>
+          <td><code>gcc -Wall main.c -o app</code></td>
+      </tr>
+      <tr>
+          <td><code>-fexec-charset=&lt;charset&gt;</code></td>
+          <td>Set execution character set</td>
+          <td>指定运行时编码</td>
+          <td><code>gcc -fexec-charset=GBK main.c -o app</code></td>
+      </tr>
+      <tr>
+          <td><code>-finput-charset=&lt;charset&gt;</code></td>
+          <td>Set source file input character set</td>
+          <td>指定源文件编码</td>
+          <td><code>gcc -finput-charset=UTF-8 main.c -o app</code></td>
+      </tr>
+      <tr>
+          <td><code>-O0 … -O3</code></td>
+          <td>Set optimization level (0 to 3)</td>
+          <td>指定优化级别（0~3）</td>
+          <td><code>gcc -O2 main.c -o app</code></td>
+      </tr>
+      <tr>
+          <td><code>-E</code> + <code>-o &lt;file.i&gt;</code></td>
+          <td>Run preprocessing only; write output to file</td>
+          <td>仅预处理，配合 <code>-o</code> 写入 <code>.i</code> 文件</td>
+          <td><code>gcc -E -o out.i main.c</code></td>
+      </tr>
+      <tr>
+          <td><code>-S</code></td>
+          <td>Compile to assembly only</td>
+          <td>仅编译到汇编（生成 <code>.s</code>，不汇编不链接）</td>
+          <td><code>gcc -S -o out.s main.c</code></td>
+      </tr>
+      <tr>
+          <td><code>-c</code></td>
+          <td>Compile to object code only (no linking)</td>
+          <td>仅生成目标文件 <code>.o</code>（不链接）</td>
+          <td><code>gcc -c -o main.o main.c</code></td>
+      </tr>
+      <tr>
+          <td><code>-static</code></td>
+          <td>Link statically</td>
+          <td>静态链接</td>
+          <td><code>gcc -static main.c -o app</code></td>
+      </tr>
+      <tr>
+          <td><code>-I&lt;dir&gt;</code></td>
+          <td>Add directory to header search path</td>
+          <td>增加头文件搜索路径</td>
+          <td><code>gcc -Iinclude src/main.c -o app</code></td>
+      </tr>
+      <tr>
+          <td><code>-L&lt;dir&gt;</code></td>
+          <td>Add directory to library search path</td>
+          <td>增加库搜索路径</td>
+          <td><code>gcc -Llib main.c -lm -o app</code></td>
+      </tr>
+  </tbody>
+</table></div>
  <!--list-separator-->
 <ul>
 <li>
@@ -932,7 +1008,7 @@ each <code>.o</code> → its own <code>.c</code> file</li>
 
 
         <span>
-            Last updated on 2025-08-14 11:29 &#43;0800
+            Last updated on 2025-08-14 11:34 &#43;0800
         </span>
     </section></footer>
 
