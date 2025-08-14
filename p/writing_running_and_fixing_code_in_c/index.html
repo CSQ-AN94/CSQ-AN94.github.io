@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=":ID: 369b629d-2991-4961-9234-83a00b87ecc5\nRUNNING compiling process preprocessing 预处理\nmain.c → main.i\ndeal with #include deal with conditional directives\u00a01(e.g. #if) delete #define,expand all the macos delete all comments add line and dile markers, so debug symbols and error/warning messages report correct locations keep all #pragma directives compilation 编译\nmain.c → main.s\nLexical analysis 词法分析 Syntax analysis 语法分析 Semantic analysis 语义分析 Optimization 优化 assembly 汇编\n">
+<title>Writing_Running_and_Fixing_Code_in_C</title>
+
+<link rel='canonical' href='https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/'>
+
+<link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Writing_Running_and_Fixing_Code_in_C">
+<meta property='og:description' content=":ID: 369b629d-2991-4961-9234-83a00b87ecc5\nRUNNING compiling process preprocessing 预处理\nmain.c → main.i\ndeal with #include deal with conditional directives\u00a01(e.g. #if) delete #define,expand all the macos delete all comments add line and dile markers, so debug symbols and error/warning messages report correct locations keep all #pragma directives compilation 编译\nmain.c → main.s\nLexical analysis 词法分析 Syntax analysis 语法分析 Semantic analysis 语义分析 Optimization 优化 assembly 汇编\n">
+<meta property='og:url' content='https://csq-an94.github.io/p/writing_running_and_fixing_code_in_c/'>
+<meta property='og:site_name' content='CSQ-AN94'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T11:26:01&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T11:29:12&#43;08:00'/>
+<meta name="twitter:title" content="Writing_Running_and_Fixing_Code_in_C">
+<meta name="twitter:description" content=":ID: 369b629d-2991-4961-9234-83a00b87ecc5\nRUNNING compiling process preprocessing 预处理\nmain.c → main.i\ndeal with #include deal with conditional directives\u00a01(e.g. #if) delete #define,expand all the macos delete all comments add line and dile markers, so debug symbols and error/warning messages report correct locations keep all #pragma directives compilation 编译\nmain.c → main.s\nLexical analysis 词法分析 Syntax analysis 语法分析 Semantic analysis 语义分析 Optimization 优化 assembly 汇编\n">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_e034d3687c832a41.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">CSQ-AN94</a></h1>
+            <h2 class="site-description">Welcome</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CSQ-AN94'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/library/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-library"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 3m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" /><path d="M11 7h5" /><path d="M11 10h6" /><path d="M11 13h3" /></svg>
+                
+                <span>Library</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://csq-an94.github.io/" selected>English</option>
+                                
+                                    <option value="https://csq-an94.github.io/zh-cn/" >中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#running">RUNNING</a>
+      <ol>
+        <li><a href="#compiling">compiling</a>
+          <ol>
+            <li><a href="#process">process</a></li>
+            <li><a href="#tools">tools</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/learning--tech/" >
+                Learning &amp; Tech
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/writing_running_and_fixing_code_in_c/">Writing_Running_and_Fixing_Code_in_C</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-08-14</time>
+            </div>
+        
+                <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    2025-08-14 11:29 &#43;0800
+                </time>
+            </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>:ID:       369b629d-2991-4961-9234-83a00b87ecc5</p>
+<h2 id="running">RUNNING
+</h2><h3 id="compiling">compiling
+</h3><h4 id="process">process
+</h4><!--list-separator-->
+<ul>
+<li>
+<p>preprocessing 预处理</p>
+<p>main.c → main.i</p>
+<ol>
+<li>deal with #include</li>
+<li>deal with conditional directives <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>(e.g. #if)</li>
+<li>delete #define,expand all the macos</li>
+<li>delete all comments</li>
+<li>add line and dile markers, so debug symbols and error/warning messages report correct locations</li>
+<li>keep all #pragma directives</li>
+</ol>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>compilation 编译</p>
+<p>main.c → main.s</p>
+<ol>
+<li>Lexical analysis  词法分析</li>
+<li>Syntax analysis   语法分析</li>
+<li>Semantic analysis 语义分析</li>
+<li>Optimization      优化</li>
+</ol>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>assembly 汇编</p>
+<p>main.c → main.o
+Translates assembly instructions(汇编指令) into machine code</p>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>linking</p>
+<p>main.o + licraries → a.out</p>
+ <!--list-separator-->
+<ul>
+<li>Static Linking  静态链接</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>Dynamic Linking 动态链接</li>
+</ul>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>picture of the hole process</p>
+<figure><img src="/ox-hugo/compilation_process.png" width="1500px">
+    </figure>
+
+</li>
+</ul>
+<h4 id="tools">tools
+</h4><!--list-separator-->
+<ul>
+<li>
+<p>compiling (GCC)                  「References:  <a class="link" href="https://www.bilibili.com/video/BV1y6421g7GY"  target="_blank" rel="noopener"
+    >GCC(MinGW)使用入门教程</a>」</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>命令</p>
+<p><strong>格式: gcc &lt;options&gt; &lt;source-files&gt;</strong>
+&ndash; gcc &lt;source-files&gt; &lt;options&gt; // gcc &lt;options&gt; &lt;source-files&gt; &lt;option&gt; is ok</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>options</p>
+<p>-o&lt;filename&gt;                  Specify output file name                             指定文件名
+-Wall                         Enable warning messages                              输出警告信息
+-fexec-charset=&lt;charset&gt;      Set execution character set                          指定运行时编码      -fexec-charset=GBK
+-finput-charset=&lsquo;UTF-8&rsquo;       Set source file input character set                  指定源文件编码      -finput-charset=UTF-8
+-O(0-3)                       Set optimization level (0 to 3)                      指定代码优化级别
+-E  -o&lt;filename.i&gt;            Run preprocessing only and write output to file      编译过程进行到预处理
+-S                            Compile to assembly only                             编译过程进行到编译
+-c                            Compile to object code only (no linking)             编译过程执行到汇编
+-static                       Link statically                                      静态链接
+-I&lt;dir&gt;                       Add directory to header search path                  指定头文件搜索路径
+-L&lt;dir&gt;                       Add directory to library search path                 指定库搜索路径</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>-W</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>Basic Syntax</p>
+<ul>
+<li><code>Wxxx</code>
+wnable a specific warning</li>
+<li><code>Wno-xxx</code>
+disable a specific warning</li>
+<li><code>Werror</code><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>
+treat all warnings as erroes</li>
+<li><code>Werror</code>
+treat only the specified warning as an error</li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>Common Warning Options
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-Wall</td>
+          <td>Enable most common warnings (not all)</td>
+      </tr>
+      <tr>
+          <td>-Wextra</td>
+          <td>Enable extra warnings in addition to -Wall</td>
+      </tr>
+      <tr>
+          <td>-Wunused-variable</td>
+          <td>Warn about unused variables</td>
+      </tr>
+      <tr>
+          <td>-Wsign-compare</td>
+          <td>Warn when comparing signed and unsigned integers</td>
+      </tr>
+      <tr>
+          <td>-Wreturn-local-addr</td>
+          <td>Warn if returning the address of a local variable</td>
+      </tr>
+      <tr>
+          <td>-Werror</td>
+          <td>Treat all warnings as errors</td>
+      </tr>
+      <tr>
+          <td>-Werror=xxx</td>
+          <td>Treat only a specific warning as an error</td>
+      </tr>
+      <tr>
+          <td>-Wno-xxx</td>
+          <td>Disable a specific warning</td>
+      </tr>
+  </tbody>
+</table></div>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gcc -o main -Wall main.c
+</span></span><span class="line"><span class="cl">  <span class="c1"># Enable common warnings + treat returning local address as an error</span>
+</span></span><span class="line"><span class="cl">gcc  -o main -Wall -Wextra -Werror<span class="o">=</span><span class="k">return</span>-local-addr main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Disable unused variable warning</span>
+</span></span><span class="line"><span class="cl">gcc -o main -Wall -Wno-unused-variable main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Treat all warnings as errors</span>
+</span></span><span class="line"><span class="cl">gcc -o main -Wall -Wextra -Werror main.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>-I&lt;dir&gt;</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>basic usage</p>
+<p><code>gcc -I&lt;path&gt; source.c -o output</code>
+&lt;path&gt; can be absolute or relative</p>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>relative vs. absolute paths</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>relative</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gcc -Iinclude -o main main.c     <span class="c1"># searches ./include/      ./ → current directory</span>
+</span></span><span class="line"><span class="cl">gcc -I../include -o main main.c  <span class="c1"># searches ../include/    ../ → parent directory</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>absolute</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#Linux/macOS</span>
+</span></span><span class="line"><span class="cl">gcc -I/home/user/project/include -o main main.c
+</span></span><span class="line"><span class="cl"><span class="c1">#Windows</span>
+</span></span><span class="line"><span class="cl">gcc -IC:<span class="se">\U</span>sers<span class="se">\S</span>KK<span class="se">\D</span>esktop<span class="se">\G</span>CC<span class="se">\0</span>3<span class="se">\i</span>nclude -o main main.c
+</span></span><span class="line"><span class="cl"><span class="c1">#if the path contains spaces(空格), wrap it in quotes</span>
+</span></span><span class="line"><span class="cl">gcc -I<span class="s2">&#34;C:\Users\SKK\Desktop\GCC\03\my include&#34;</span> -o main main.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>multiple paths</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gcc -Iinclude -I../common/include -I<span class="s2">&#34;C:\extra\include&#34;</span>  -o main main.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>-g</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>purpose</p>
+<ul>
+<li>Adds debugging information (function names, line numbers, variable names) to the executable.</li>
+<li>Allows debuggers like gdb or lldb to show source code locations and variable values.</li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>common levels</p>
+<ul>
+<li><code>-g</code> or <code>-g2</code>   Default debug info, most common</li>
+<li><code>-g1</code>  Minimal info (function names, line numbers only)</li>
+<li><code>-g3</code>  Extra info (includes macro definitions</li>
+<li><code>-g0</code>    No debug info (disables debugging)</li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>common usage</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Normal debugging</span>
+</span></span><span class="line"><span class="cl">gcc -g -o main main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Maximum debug info</span>
+</span></span><span class="line"><span class="cl">gcc -g3 -o main main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Debugging + disable optimizations (easier to debug)</span>
+</span></span><span class="line"><span class="cl">gcc -g -O0 -o main main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Debugging + enable optimizations (faster, but may misalign with source lines)</span>
+</span></span><span class="line"><span class="cl">gcc -g -O2 -o main main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Use with -W</span>
+</span></span><span class="line"><span class="cl">gcc -g -O0 -Wall -o app main.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>multi-file compilation</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>compile &amp; link in one step</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gcc  -o main main.c bubblesort.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>or</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gcc -o main  *.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>Compile separately, then link</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">gcc -c main.c
+</span></span><span class="line"><span class="cl">gcc -c bubblesort.c
+</span></span><span class="line"><span class="cl">gcc -o main main.o bubblesort.o
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Next: automate with Makefile <a class="link" href="/p/writing_running_and_fixing_code_in_c/#multi-step-build" >skip</a></th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table></div>
+<p>v</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>makefile                  「References: <a class="link" href="https://www.bilibili.com/video/BV1tyWWeeEpp"  target="_blank" rel="noopener"
+    >20分钟Makefile光速入门教程</a>」</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>rule</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">target </span><span class="o">:</span> <span class="n">dependencies</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;TAB&gt;action</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>target (the file you want to build/目标文件)
+e.g. <code>main.o</code>, <code>hello</code></li>
+<li>dependencies (files required to build the target)
+such as <code>.c</code> source files or head files
+If any dependency changes, <code>make</code> will automatically rebuild the target.</li>
+<li>action (shell command(s) to build the target/执行文件)
+must start with a Tab
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">main</span><span class="o">:</span><span class="n">main</span>.<span class="n">c</span> <span class="n">message</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">   gcc -o main main.c message.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>timestamp based rebuild</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>logic</p>
+<ul>
+<li>if any dependency is newer than the target → rebuild the target</li>
+<li>if target does not exist → build it</li>
+<li>if dependencies are older than the target → skip rebuilding</li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>example</p>
+ <!--list-separator-->
+<ul>
+<li>
+<p>Single-step build</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">main</span><span class="o">:</span><span class="n">main</span>.<span class="n">c</span> <span class="n">message</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">   gcc -o main main.c message.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>dependencies：main.c  message.c</li>
+<li>logic: if any <code>.c</code> is newer than <code>hello</code> → rebuild the whole program</li>
+<li>drawback: even one changed <code>.c</code> forces all sources to recompile and link</li>
+</ul>
+</li>
+</ul>
+ <!--list-separator-->
+<ul>
+<li>
+<p>multi-step build</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">main</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="n">message</span>.<span class="n">o</span>
+</span></span><span class="line"><span class="cl">    gcc  -o main main.o message.o
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">    gcc -c main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">message.o</span><span class="o">:</span> <span class="n">message</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">    gcc -c message.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>dependencies
+hello → <code>.o</code> files
+each <code>.o</code> → its own <code>.c</code> file</li>
+<li>logic: only changed <code>.c</code> files are recompiled; then linking runs once</li>
+<li>advantage: faster incremental builds, avoids unnecessary recompilation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>directives:指令&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>| Warning                                    | Error                            |
+|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
+| Potential issue, program can still compile | Serious issue, compilation stops |
+| May cause bugs at runtime                  | Must fix before running          |
+| Example: unused variable                   | Example: missing <code>;</code>             |&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c-programming-notes/">C Programming Notes</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on 2025-08-14 11:29 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/pointers_arrays_and_recursion/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Pointers_arrays_and_recursion</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo=""
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 CSQ-AN94
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let openUl = document.querySelectorAll(".open");
+            if (openUl.length > 0) {
+              openUl.forEach((ul) => {
+                ul.classList.remove("open")
+              })
+            }
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+<style>
+    #backTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        z-index: 99;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background-image: url(https://csq-an94.github.io/icons/backTop.svg);
+    }
+</style>
+
+<script>
+    
+
+    function initScrollTop() {
+        let rightSideBar = document.querySelector(".right-sidebar");
+        if (!rightSideBar) {
+            return;
+        }
+        
+        let btn = document.createElement("div");
+        btn.id = "backTopBtn";
+        btn.onclick = backToTop
+        rightSideBar.appendChild(btn)
+        
+        window.onscroll = function() {
+            
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    }
+
+    
+
+    function backToTop(){
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    initScrollTop();
+</script>
+
+    </body>
+</html>
