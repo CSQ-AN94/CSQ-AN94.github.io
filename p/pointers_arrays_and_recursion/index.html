@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type) example: `char *x` means \\&quot;pointer to a char\\&quot; Syntax char \\* my_charpointer Symbol * adding `*` after any type names makes it a \\&quot;pointer to that type\\&quot; Purpose tell us the variable name and the type of variable that the pointer will point to. Assigning to a pointer pointer can be assigned and changing their values (as with all other varibles) changing the value of a pointer changes the memory location it points to initialize pointers before use (the first time assigning) undefined pointers point to unknown memory locations, causing undefined behavior and possible program crashes assigning an address to a pointer 1. have a variable (a \\'box\\' in memory) 2. get its address using the &amp; 3. assign that address to the pointer ``` c int x = 5; // variable int *xPtr; // declare the pointer xPtr = &amp;x; // assign the pointer, store x's address in xPtr ``` &amp; operator behavior - `&amp;` is called an \\&quot;ampersand\\&quot; - `&amp;` **gives an arrow pointing at** its operand[^1](the memory location of the operand) - `&amp;` can be applied to any lvalue (an expression that refers to a memory location). - for variables, `&amp;x` means &quot;the address of x&quot;. - **the address of a variable is not itself an lvalue → you can't change it.** `&amp;x = 5`; is invalid. Unary vs. binary operator | Comparison | Unary `&amp;` (address‑of) | Binary `&amp;` (bitwise AND) | |-------------------|-----------------------------------|------------------------------------| | Number of operands| 1 | 2 | | Result type | **pointer** | **integer** (bitwise result) | | Purpose | Get the memory address of a variable | Perform bitwise AND on two integers | | Example | `p = &amp;x;` | `c = a &amp; b;` | ``` c // Example for address-of int x = 5; int *p = &amp;x; // Example for bitwise AND int a = 3; // Binary 0110 a = 0 1 1 0 int b = 5; // Binary 1010 b = 1 0 1 0 int c = a &amp; b;// The result is 0010 (binary),which is 2 a &amp; b = 0 0 1 0 ``` Dereferencing a pointer using * to access/change the value stored at the memory location a pointer points to two meanings of * declaration: int *p → pointer to int expression: *p → dereference 1 2 3 int x = 5; // x = 5 int *p = &amp;x; // pointer initialized with x’s address *p = 6; // x = 6 (dereference to modify x) Pictures When working with pointers, always draw pictures to help you.\n">
 <title>Pointers_arrays_and_recursion</title>
 
 <link rel='canonical' href='https://csq-an94.github.io/p/pointers_arrays_and_recursion/'>
 
 <link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Pointers_arrays_and_recursion">
-<meta property='og:description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
+<meta property='og:description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type) example: `char *x` means \\&quot;pointer to a char\\&quot; Syntax char \\* my_charpointer Symbol * adding `*` after any type names makes it a \\&quot;pointer to that type\\&quot; Purpose tell us the variable name and the type of variable that the pointer will point to. Assigning to a pointer pointer can be assigned and changing their values (as with all other varibles) changing the value of a pointer changes the memory location it points to initialize pointers before use (the first time assigning) undefined pointers point to unknown memory locations, causing undefined behavior and possible program crashes assigning an address to a pointer 1. have a variable (a \\'box\\' in memory) 2. get its address using the &amp; 3. assign that address to the pointer ``` c int x = 5; // variable int *xPtr; // declare the pointer xPtr = &amp;x; // assign the pointer, store x's address in xPtr ``` &amp; operator behavior - `&amp;` is called an \\&quot;ampersand\\&quot; - `&amp;` **gives an arrow pointing at** its operand[^1](the memory location of the operand) - `&amp;` can be applied to any lvalue (an expression that refers to a memory location). - for variables, `&amp;x` means &quot;the address of x&quot;. - **the address of a variable is not itself an lvalue → you can't change it.** `&amp;x = 5`; is invalid. Unary vs. binary operator | Comparison | Unary `&amp;` (address‑of) | Binary `&amp;` (bitwise AND) | |-------------------|-----------------------------------|------------------------------------| | Number of operands| 1 | 2 | | Result type | **pointer** | **integer** (bitwise result) | | Purpose | Get the memory address of a variable | Perform bitwise AND on two integers | | Example | `p = &amp;x;` | `c = a &amp; b;` | ``` c // Example for address-of int x = 5; int *p = &amp;x; // Example for bitwise AND int a = 3; // Binary 0110 a = 0 1 1 0 int b = 5; // Binary 1010 b = 1 0 1 0 int c = a &amp; b;// The result is 0010 (binary),which is 2 a &amp; b = 0 0 1 0 ``` Dereferencing a pointer using * to access/change the value stored at the memory location a pointer points to two meanings of * declaration: int *p → pointer to int expression: *p → dereference 1 2 3 int x = 5; // x = 5 int *p = &amp;x; // pointer initialized with x’s address *p = 6; // x = 6 (dereference to modify x) Pictures When working with pointers, always draw pictures to help you.\n">
 <meta property='og:url' content='https://csq-an94.github.io/p/pointers_arrays_and_recursion/'>
 <meta property='og:site_name' content='CSQ-AN94'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T09:50:13&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T10:24:57&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T09:50:13&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T10:33:33&#43;08:00'/>
 <meta name="twitter:title" content="Pointers_arrays_and_recursion">
-<meta name="twitter:description" content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
+<meta name="twitter:description" content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type) example: `char *x` means \\&quot;pointer to a char\\&quot; Syntax char \\* my_charpointer Symbol * adding `*` after any type names makes it a \\&quot;pointer to that type\\&quot; Purpose tell us the variable name and the type of variable that the pointer will point to. Assigning to a pointer pointer can be assigned and changing their values (as with all other varibles) changing the value of a pointer changes the memory location it points to initialize pointers before use (the first time assigning) undefined pointers point to unknown memory locations, causing undefined behavior and possible program crashes assigning an address to a pointer 1. have a variable (a \\'box\\' in memory) 2. get its address using the &amp; 3. assign that address to the pointer ``` c int x = 5; // variable int *xPtr; // declare the pointer xPtr = &amp;x; // assign the pointer, store x's address in xPtr ``` &amp; operator behavior - `&amp;` is called an \\&quot;ampersand\\&quot; - `&amp;` **gives an arrow pointing at** its operand[^1](the memory location of the operand) - `&amp;` can be applied to any lvalue (an expression that refers to a memory location). - for variables, `&amp;x` means &quot;the address of x&quot;. - **the address of a variable is not itself an lvalue → you can't change it.** `&amp;x = 5`; is invalid. Unary vs. binary operator | Comparison | Unary `&amp;` (address‑of) | Binary `&amp;` (bitwise AND) | |-------------------|-----------------------------------|------------------------------------| | Number of operands| 1 | 2 | | Result type | **pointer** | **integer** (bitwise result) | | Purpose | Get the memory address of a variable | Perform bitwise AND on two integers | | Example | `p = &amp;x;` | `c = a &amp; b;` | ``` c // Example for address-of int x = 5; int *p = &amp;x; // Example for bitwise AND int a = 3; // Binary 0110 a = 0 1 1 0 int b = 5; // Binary 1010 b = 1 0 1 0 int c = a &amp; b;// The result is 0010 (binary),which is 2 a &amp; b = 0 0 1 0 ``` Dereferencing a pointer using * to access/change the value stored at the memory location a pointer points to two meanings of * declaration: int *p → pointer to int expression: *p → dereference 1 2 3 int x = 5; // x = 5 int *p = &amp;x; // pointer initialized with x’s address *p = 6; // x = 6 (dereference to modify x) Pictures When working with pointers, always draw pictures to help you.\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -281,8 +281,23 @@
   <ol>
     <li><a href="#basics">Basics</a>
       <ol>
-        <li><a href="#declaring-a-pointer">Declaring a pointer</a></li>
-        <li><a href="#assigning-to-a-pointer">Assigning to a pointer</a></li>
+        <li><a href="#declaring-a-pointer">Declaring a pointer</a>
+          <ol>
+            <li><a href="#pointer-is-not-a-type-pointer-is-a-type-constructora-language">Pointer is not a type. Pointer is a <em>type constructor</em>&ndash;a language</a></li>
+            <li><a href="#syntax">Syntax</a></li>
+            <li><a href="#symbol-">Symbol <code>*</code></a></li>
+            <li><a href="#purpose">Purpose</a></li>
+          </ol>
+        </li>
+        <li><a href="#assigning-to-a-pointer">Assigning to a pointer</a>
+          <ol>
+            <li><a href="#pointer-can-be-assigned-and-changing-their-values-as-with-all-other">pointer can be assigned and changing their values (as with all other</a></li>
+            <li><a href="#initialize-pointers-before-use-the-first-time-assigning">initialize pointers before use (the first time assigning)</a></li>
+            <li><a href="#assigning-an-address-to-a-pointer">assigning an address to a pointer</a></li>
+            <li><a href="#-operator-behavior"><code>&amp;</code> operator behavior</a></li>
+            <li><a href="#unary-vs-binary-operator">Unary vs. binary operator</a></li>
+          </ol>
+        </li>
         <li><a href="#dereferencing-a-pointer">Dereferencing a pointer</a></li>
       </ol>
     </li>
@@ -354,7 +369,7 @@
 
 
                 <time>
-                    2025-08-14 10:24 &#43;0800
+                    2025-08-14 10:33 &#43;0800
                 </time>
             </div>
     </footer>
@@ -388,111 +403,76 @@ location as an arrow that points to another variable)</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="declaring-a-pointer">Declaring a pointer
-</h3><ol>
-<li>
-<p>Pointer is not a type. Pointer is a <em>type constructor</em>&ndash;a language
-construct (when applied to another type, give us a new type)</p>
-<p>example: <code>char *x</code> means &quot;pointer to a char&quot;</p>
-</li>
-<li>
-<p>Syntax</p>
-<p>char * my_charpointer</p>
-</li>
-<li>
-<p>Symbol <code>*</code></p>
-<p>adding <code>*</code> after any type names makes it a &quot;pointer to
-that type&quot;</p>
-</li>
-<li>
-<p>Purpose</p>
-<p>tell us the variable name and the type of variable that the pointer
-will point to.</p>
-</li>
-</ol>
+</h3><h4 id="pointer-is-not-a-type-pointer-is-a-type-constructora-language">Pointer is not a type. Pointer is a <em>type constructor</em>&ndash;a language
+</h4><pre><code>construct (when applied to another type, give us a new type)
+
+example: `char *x` means \&quot;pointer to a char\&quot;
+</code></pre>
+<h4 id="syntax">Syntax
+</h4><pre><code>char \* my_charpointer
+</code></pre>
+<h4 id="symbol-">Symbol <code>*</code>
+</h4><pre><code>adding `*` after any type names makes it a \&quot;pointer to
+that type\&quot;
+</code></pre>
+<h4 id="purpose">Purpose
+</h4><pre><code>tell us the variable name and the type of variable that the pointer
+will point to.
+</code></pre>
 <h3 id="assigning-to-a-pointer">Assigning to a pointer
-</h3><ol>
-<li>
-<p>pointer can be assigned and changing their values (as with all other
-varibles)</p>
-<p>changing the value of a pointer changes the memory location it
-points to</p>
-</li>
-<li>
-<p>initialize pointers before use (the first time assigning)</p>
-<p>undefined pointers point to unknown memory locations, causing
-undefined behavior and possible program crashes</p>
-</li>
-<li>
-<p>assigning an address to a pointer</p>
-<ol>
-<li>
-<p>have a variable (a 'box' in memory)</p>
-</li>
-<li>
-<p>get its address using the &amp;</p>
-</li>
-<li>
-<p>assign that address to the pointer</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>      <span class="c1">// variable 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">xPtr</span><span class="p">;</span>      <span class="c1">// declare the pointer 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">xPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>      <span class="c1">// assign the pointer, store x&#39;s address in xPtr
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
-</li>
-<li>
-<p><code>&amp;</code> operator behavior</p>
-<ul>
-<li><code>&amp;</code> is called an &quot;ampersand&quot;</li>
-<li><code>&amp;</code> <strong>gives an arrow pointing at</strong> its operand<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>(the
-memory location of the operand)</li>
-<li><code>&amp;</code> can be applied to any lvalue (an expression that
-refers to a memory location).</li>
-<li>for variables, <code>&amp;x</code> means &ldquo;the address of x&rdquo;.</li>
-<li><strong>the address of a variable is not itself an lvalue → you can&rsquo;t
-change it.</strong> <code>&amp;x = 5</code>; is invalid.</li>
-</ul>
-</li>
-<li>
-<p>Unary vs. binary operator</p>
-<p>Comparison           Unary &amp; (address-of)                   Binary &amp; (bitwise AND)</p>
-<hr>
-<p>Number of operands   1                                      2
-Result type          <strong>pointer</strong>                            <strong>integer</strong> (bitwise result)
-Purpose              Get the memory address of a variable   Perform bitwise AND on two integers
-Example              <code>p = &amp;x;</code>                              <code>c = a &amp; b;</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// Example for address-of
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// Example for bitwise AND
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// Binary 0110                                         a = 0 1 1 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>  <span class="c1">// Binary 1010                                         b = 1 0 1 0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">;</span><span class="c1">// The result is 0010 (binary),which is 2        a &amp; b = 0 0 1 0
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
+</h3><h4 id="pointer-can-be-assigned-and-changing-their-values-as-with-all-other">pointer can be assigned and changing their values (as with all other
+</h4><pre><code>varibles)
+
+changing the value of a pointer changes the memory location it
+points to
+</code></pre>
+<h4 id="initialize-pointers-before-use-the-first-time-assigning">initialize pointers before use (the first time assigning)
+</h4><pre><code>undefined pointers point to unknown memory locations, causing
+undefined behavior and possible program crashes
+</code></pre>
+<h4 id="assigning-an-address-to-a-pointer">assigning an address to a pointer
+</h4><pre><code>1.  have a variable (a \'box\' in memory)
+
+2.  get its address using the &amp;
+
+3.  assign that address to the pointer
+
+    ``` c
+    int x = 5;      // variable 
+    int *xPtr;      // declare the pointer 
+    xPtr = &amp;x;      // assign the pointer, store x's address in xPtr
+    ```
+</code></pre>
+<h4 id="-operator-behavior"><code>&amp;</code> operator behavior
+</h4><pre><code>- `&amp;` is called an \&quot;ampersand\&quot;
+- `&amp;` **gives an arrow pointing at** its operand[^1](the
+  memory location of the operand)
+- `&amp;` can be applied to any lvalue (an expression that
+  refers to a memory location).
+- for variables, `&amp;x` means &quot;the address of x&quot;.
+- **the address of a variable is not itself an lvalue → you can't
+  change it.** `&amp;x = 5`; is invalid.
+</code></pre>
+<h4 id="unary-vs-binary-operator">Unary vs. binary operator
+</h4><pre><code> | Comparison        | Unary `&amp;` (address‑of)            | Binary `&amp;` (bitwise AND)           |
+ |-------------------|-----------------------------------|------------------------------------|
+ | Number of operands| 1                                 | 2                                  |
+ | Result type       | **pointer**                       | **integer** (bitwise result)       |
+ | Purpose           | Get the memory address of a variable | Perform bitwise AND on two integers |
+ | Example           | `p = &amp;x;`                         | `c = a &amp; b;`                       |
+
+
+``` c
+// Example for address-of
+int x = 5;
+int *p = &amp;x;
+
+// Example for bitwise AND
+int a = 3;  // Binary 0110                                         a = 0 1 1 0
+int b = 5;  // Binary 1010                                         b = 1 0 1 0
+int c = a &amp; b;// The result is 0010 (binary),which is 2        a &amp; b = 0 0 1 0
+```
+</code></pre>
 <h3 id="dereferencing-a-pointer">Dereferencing a pointer
 </h3><ol>
 <li>using <code>*</code> to access/change the <strong>value stored at the
@@ -646,15 +626,7 @@ memory location</strong> a pointer points to</li>
 	
 ></p>
 <h1 id="footnotes">Footnotes
-</h1><div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>operand: 运算对象&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-
+</h1>
 </section>
 
 
@@ -689,7 +661,7 @@ memory location</strong> a pointer points to</li>
 
 
         <span>
-            Last updated on 2025-08-14 10:24 &#43;0800
+            Last updated on 2025-08-14 10:33 &#43;0800
         </span>
     </section></footer>
 

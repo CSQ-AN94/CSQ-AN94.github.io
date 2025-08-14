@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>CSQ-AN94</copyright>
-        <lastBuildDate>Thu, 14 Aug 2025 10:24:57 +0800</lastBuildDate><atom:link href="https://csq-an94.github.io/categories/learning--tech/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Aug 2025 10:33:33 +0800</lastBuildDate><atom:link href="https://csq-an94.github.io/categories/learning--tech/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Pointers_arrays_and_recursion</title>
         <link>https://csq-an94.github.io/p/pointers_arrays_and_recursion/</link>
         <pubDate>Thu, 14 Aug 2025 09:50:13 +0800</pubDate>
@@ -33,111 +33,76 @@ location as an arrow that points to another variable)&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;declaring-a-pointer&#34;&gt;Declaring a pointer
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Pointer is not a type. Pointer is a &lt;em&gt;type constructor&lt;/em&gt;&amp;ndash;a language
-construct (when applied to another type, give us a new type)&lt;/p&gt;
-&lt;p&gt;example: &lt;code&gt;char *x&lt;/code&gt; means &amp;quot;pointer to a char&amp;quot;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Syntax&lt;/p&gt;
-&lt;p&gt;char * my_charpointer&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Symbol &lt;code&gt;*&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;adding &lt;code&gt;*&lt;/code&gt; after any type names makes it a &amp;quot;pointer to
-that type&amp;quot;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Purpose&lt;/p&gt;
-&lt;p&gt;tell us the variable name and the type of variable that the pointer
-will point to.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;pointer-is-not-a-type-pointer-is-a-type-constructora-language&#34;&gt;Pointer is not a type. Pointer is a &lt;em&gt;type constructor&lt;/em&gt;&amp;ndash;a language
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;construct (when applied to another type, give us a new type)
+
+example: `char *x` means \&amp;quot;pointer to a char\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;syntax&#34;&gt;Syntax
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;char \* my_charpointer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;symbol-&#34;&gt;Symbol &lt;code&gt;*&lt;/code&gt;
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;adding `*` after any type names makes it a \&amp;quot;pointer to
+that type\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;purpose&#34;&gt;Purpose
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;tell us the variable name and the type of variable that the pointer
+will point to.
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;assigning-to-a-pointer&#34;&gt;Assigning to a pointer
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;pointer can be assigned and changing their values (as with all other
-varibles)&lt;/p&gt;
-&lt;p&gt;changing the value of a pointer changes the memory location it
-points to&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;initialize pointers before use (the first time assigning)&lt;/p&gt;
-&lt;p&gt;undefined pointers point to unknown memory locations, causing
-undefined behavior and possible program crashes&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;assigning an address to a pointer&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;have a variable (a &#39;box&#39; in memory)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;get its address using the &amp;amp;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;assign that address to the pointer&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;// variable 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xPtr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;// declare the pointer 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xPtr&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;// assign the pointer, store x&amp;#39;s address in xPtr
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; operator behavior&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; is called an &amp;quot;ampersand&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; &lt;strong&gt;gives an arrow pointing at&lt;/strong&gt; its operand&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;(the
-memory location of the operand)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; can be applied to any lvalue (an expression that
-refers to a memory location).&lt;/li&gt;
-&lt;li&gt;for variables, &lt;code&gt;&amp;amp;x&lt;/code&gt; means &amp;ldquo;the address of x&amp;rdquo;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;the address of a variable is not itself an lvalue → you can&amp;rsquo;t
-change it.&lt;/strong&gt; &lt;code&gt;&amp;amp;x = 5&lt;/code&gt;; is invalid.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Unary vs. binary operator&lt;/p&gt;
-&lt;p&gt;Comparison           Unary &amp;amp; (address-of)                   Binary &amp;amp; (bitwise AND)&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Number of operands   1                                      2
-Result type          &lt;strong&gt;pointer&lt;/strong&gt;                            &lt;strong&gt;integer&lt;/strong&gt; (bitwise result)
-Purpose              Get the memory address of a variable   Perform bitwise AND on two integers
-Example              &lt;code&gt;p = &amp;amp;x;&lt;/code&gt;                              &lt;code&gt;c = a &amp;amp; b;&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Example for address-of
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Example for bitwise AND
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// Binary 0110                                         a = 0 1 1 0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// Binary 1010                                         b = 1 0 1 0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// The result is 0010 (binary),which is 2        a &amp;amp; b = 0 0 1 0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/h3&gt;&lt;h4 id=&#34;pointer-can-be-assigned-and-changing-their-values-as-with-all-other&#34;&gt;pointer can be assigned and changing their values (as with all other
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;varibles)
+
+changing the value of a pointer changes the memory location it
+points to
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;initialize-pointers-before-use-the-first-time-assigning&#34;&gt;initialize pointers before use (the first time assigning)
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;undefined pointers point to unknown memory locations, causing
+undefined behavior and possible program crashes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;assigning-an-address-to-a-pointer&#34;&gt;assigning an address to a pointer
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;1.  have a variable (a \&#39;box\&#39; in memory)
+
+2.  get its address using the &amp;amp;
+
+3.  assign that address to the pointer
+
+    ``` c
+    int x = 5;      // variable 
+    int *xPtr;      // declare the pointer 
+    xPtr = &amp;amp;x;      // assign the pointer, store x&#39;s address in xPtr
+    ```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;-operator-behavior&#34;&gt;&lt;code&gt;&amp;amp;&lt;/code&gt; operator behavior
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;- `&amp;amp;` is called an \&amp;quot;ampersand\&amp;quot;
+- `&amp;amp;` **gives an arrow pointing at** its operand[^1](the
+  memory location of the operand)
+- `&amp;amp;` can be applied to any lvalue (an expression that
+  refers to a memory location).
+- for variables, `&amp;amp;x` means &amp;quot;the address of x&amp;quot;.
+- **the address of a variable is not itself an lvalue → you can&#39;t
+  change it.** `&amp;amp;x = 5`; is invalid.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;unary-vs-binary-operator&#34;&gt;Unary vs. binary operator
+&lt;/h4&gt;&lt;pre&gt;&lt;code&gt; | Comparison        | Unary `&amp;amp;` (address‑of)            | Binary `&amp;amp;` (bitwise AND)           |
+ |-------------------|-----------------------------------|------------------------------------|
+ | Number of operands| 1                                 | 2                                  |
+ | Result type       | **pointer**                       | **integer** (bitwise result)       |
+ | Purpose           | Get the memory address of a variable | Perform bitwise AND on two integers |
+ | Example           | `p = &amp;amp;x;`                         | `c = a &amp;amp; b;`                       |
+
+
+``` c
+// Example for address-of
+int x = 5;
+int *p = &amp;amp;x;
+
+// Example for bitwise AND
+int a = 3;  // Binary 0110                                         a = 0 1 1 0
+int b = 5;  // Binary 1010                                         b = 1 0 1 0
+int c = a &amp;amp; b;// The result is 0010 (binary),which is 2        a &amp;amp; b = 0 0 1 0
+```
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;dereferencing-a-pointer&#34;&gt;Dereferencing a pointer
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;using &lt;code&gt;*&lt;/code&gt; to access/change the &lt;strong&gt;value stored at the
@@ -291,15 +256,7 @@ memory location&lt;/strong&gt; a pointer points to&lt;/li&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h1 id=&#34;footnotes&#34;&gt;Footnotes
-&lt;/h1&gt;&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;
-&lt;p&gt;operand: 运算对象&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
+&lt;/h1&gt;</description>
         </item>
         
     </channel>
