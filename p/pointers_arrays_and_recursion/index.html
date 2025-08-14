@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
 <title>Pointers_arrays_and_recursion</title>
 
 <link rel='canonical' href='https://csq-an94.github.io/p/pointers_arrays_and_recursion/'>
 
 <link rel="stylesheet" href="/scss/style.min.946cca6c6259ef94ac55abfae7c7bf3291ea3ed5eea17ef77500b257217c6710.css"><meta property='og:title' content="Pointers_arrays_and_recursion">
-<meta property='og:description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
+<meta property='og:description' content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
 <meta property='og:url' content='https://csq-an94.github.io/p/pointers_arrays_and_recursion/'>
 <meta property='og:site_name' content='CSQ-AN94'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T09:50:13&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T09:54:20&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C programming notes' /><meta property='article:published_time' content='2025-08-14T09:50:13&#43;08:00'/><meta property='article:modified_time' content='2025-08-14T10:24:57&#43;08:00'/>
 <meta name="twitter:title" content="Pointers_arrays_and_recursion">
-<meta name="twitter:description" content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
+<meta name="twitter:description" content="Pointers Basics Pointers a way of referring to the location of a variable the value of a pointer is the location of another variable (can think of the location as an arrow that points to another variable)\n1 2 3 4 +------------------+ +--------------------+ | p (pointer) | -----&gt; | x (int) | | value: &amp;x | | value: 10 | +------------------+ +--------------------+ Declaring a pointer Pointer is not a type. Pointer is a type constructor&ndash;a language construct (when applied to another type, give us a new type)\n">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -354,7 +354,7 @@
 
 
                 <time>
-                    2025-08-14 09:54 &#43;0800
+                    2025-08-14 10:24 &#43;0800
                 </time>
             </div>
     </footer>
@@ -390,17 +390,17 @@ location as an arrow that points to another variable)</p>
 </div><h3 id="declaring-a-pointer">Declaring a pointer
 </h3><ol>
 <li>
-<p>pointer is not a type. Pointer is a <em>type constructor</em>&ndash;a language
+<p>Pointer is not a type. Pointer is a <em>type constructor</em>&ndash;a language
 construct (when applied to another type, give us a new type)</p>
-<p>example: <code>char *x</code>{.verbatim} means &quot;pointer to a char&quot;</p>
+<p>example: <code>char *x</code> means &quot;pointer to a char&quot;</p>
 </li>
 <li>
 <p>Syntax</p>
-<p>char * my<del>charpointer</del></p>
+<p>char * my_charpointer</p>
 </li>
 <li>
-<p>symbol <code>*</code>{.verbatim}</p>
-<p>adding <code>*</code>{.verbatim} after any type names makes it a &quot;pointer to
+<p>Symbol <code>*</code></p>
+<p>adding <code>*</code> after any type names makes it a &quot;pointer to
 that type&quot;</p>
 </li>
 <li>
@@ -449,16 +449,16 @@ undefined behavior and possible program crashes</p>
 </ol>
 </li>
 <li>
-<p><code>&amp;</code>{.verbatim} operator behavior</p>
+<p><code>&amp;</code> operator behavior</p>
 <ul>
-<li><code>&amp;</code>{.verbatim} is called an &quot;ampersand&quot;</li>
-<li><code>&amp;</code>{.verbatim} <strong>gives an arrow pointing at</strong> its operand<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>(the
+<li><code>&amp;</code> is called an &quot;ampersand&quot;</li>
+<li><code>&amp;</code> <strong>gives an arrow pointing at</strong> its operand<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>(the
 memory location of the operand)</li>
-<li><code>&amp;</code>{.verbatim} can be applied to any lvalue (an expression that
+<li><code>&amp;</code> can be applied to any lvalue (an expression that
 refers to a memory location).</li>
-<li>for variables, <code>&amp;x</code>{.verbatim} means &ldquo;the address of x&rdquo;.</li>
+<li>for variables, <code>&amp;x</code> means &ldquo;the address of x&rdquo;.</li>
 <li><strong>the address of a variable is not itself an lvalue → you can&rsquo;t
-change it.</strong> <code>&amp;x = 5</code>{.verbatim}; is invalid.</li>
+change it.</strong> <code>&amp;x = 5</code>; is invalid.</li>
 </ul>
 </li>
 <li>
@@ -495,12 +495,12 @@ Example              <code>p = &amp;x;</code>                              <code
 </ol>
 <h3 id="dereferencing-a-pointer">Dereferencing a pointer
 </h3><ol>
-<li>using <code>*</code>{.verbatim} to access/change the <strong>value stored at the
+<li>using <code>*</code> to access/change the <strong>value stored at the
 memory location</strong> a pointer points to</li>
-<li>two meanings of <code>*</code>{.verbatim}
+<li>two meanings of <code>*</code>
 <ul>
-<li>declaration: <code>int *p</code>{.verbatim} → pointer to int</li>
-<li>expression: <code>*p</code>{.verbatim} → dereference</li>
+<li>declaration: <code>int *p</code> → pointer to int</li>
+<li>expression: <code>*p</code> → dereference</li>
 </ul>
 </li>
 </ol>
@@ -518,23 +518,39 @@ memory location</strong> a pointer points to</li>
 </div>
 </div><h2 id="pictures">Pictures
 </h2><p>When working with pointers, always <strong>draw pictures</strong> to help you.</p>
-<ol>
-<li>draw a box with the name on the left and the value of the variable on the right. (The uninitialized value can be represented with a &lsquo;?&rsquo;)
-+&mdash;&mdash;-+&mdash;&mdash;-+      +&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&ndash;+            +&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&ndash;+
-|  x    |   5   |      |  xPtr  |     ?     |            | xPtr   |  0x1000   |   &lt;- Address of x（x的地址）
-+&mdash;&mdash;-+&mdash;&mdash;-+      +&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&ndash;+            +&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&ndash;+</li>
-<li>arrow
-+&mdash;&mdash;-+&mdash;&mdash;-+                      +&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
-|  x    |   5   |     &lt;&mdash;&mdash;&mdash;&mdash;    | xPtr   | 0x1000               |
-+&mdash;&mdash;-+&mdash;&mdash;-+                      +&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+</li>
-</ol>
-<p>the image in coursera</p>
-<p><img src="file:img/pointer.png"
-	
-	
-	
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="n">draw</span> <span class="n">a</span> <span class="n">box</span> <span class="n">with</span> <span class="n">the</span> <span class="n">name</span> <span class="n">on</span> <span class="n">the</span> <span class="n">left</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span> <span class="n">on</span> <span class="n">the</span> <span class="n">right</span><span class="o">.</span> <span class="p">(</span><span class="n">The</span> <span class="n">uninitialized</span> <span class="n">value</span> <span class="n">can</span> <span class="n">be</span> <span class="n">represented</span> <span class="n">with</span> <span class="n">a</span> <span class="s1">&#39;?&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="o">+-------+-------+</span>      <span class="o">+--------+-----------+</span>            <span class="o">+--------+-----------+</span>
+</span></span><span class="line"><span class="cl">   <span class="o">|</span>  <span class="n">x</span>    <span class="o">|</span>   <span class="mi">5</span>   <span class="o">|</span>      <span class="o">|</span>  <span class="n">xPtr</span>  <span class="o">|</span>     <span class="err">?</span>     <span class="o">|</span>            <span class="o">|</span> <span class="n">xPtr</span>   <span class="o">|</span>  <span class="mh">0x1000</span>   <span class="o">|</span>   <span class="o">&lt;-</span> <span class="n">Address</span> <span class="n">of</span> <span class="n">x</span><span class="err">（</span><span class="n">x的地址</span><span class="err">）</span>
+</span></span><span class="line"><span class="cl">   <span class="o">+-------+-------+</span>      <span class="o">+--------+-----------+</span>            <span class="o">+--------+-----------+</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="n">arrow</span>
+</span></span><span class="line"><span class="cl">   <span class="o">+-------+-------+</span>                      <span class="o">+--------+----------------------+</span>
+</span></span><span class="line"><span class="cl">   <span class="o">|</span>  <span class="n">x</span>    <span class="o">|</span>   <span class="mi">5</span>   <span class="o">|</span>     <span class="o">&lt;------------</span>    <span class="o">|</span> <span class="n">xPtr</span>   <span class="o">|</span> <span class="mh">0x1000</span>               <span class="o">|</span> 
+</span></span><span class="line"><span class="cl">   <span class="o">+-------+-------+</span>                      <span class="o">+--------+----------------------+</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>the image in coursera</p>
+<p><img src="/p/pointers_arrays_and_recursion/img/pointer1.png"
+	width="603"
+	height="217"
+	srcset="/p/pointers_arrays_and_recursion/img/pointer1_hu_82c4265c9f3e3ca9.png 480w, /p/pointers_arrays_and_recursion/img/pointer1_hu_ab5f76748007a6fb.png 1024w"
 	loading="lazy"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="277"
+		data-flex-basis="666px"
 	
 ></p>
 <h2 id="example">Example
@@ -673,7 +689,7 @@ memory location</strong> a pointer points to</li>
 
 
         <span>
-            Last updated on 2025-08-14 09:54 &#43;0800
+            Last updated on 2025-08-14 10:24 &#43;0800
         </span>
     </section></footer>
 
